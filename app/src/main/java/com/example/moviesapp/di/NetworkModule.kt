@@ -1,5 +1,6 @@
 package com.example.moviesapp.di
 
+import com.example.moviesapp.data.network.MoviesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +20,10 @@ object NetworkModule {
             .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+    @Singleton
+    @Provides
+    fun provideMoviesApi(retrofit: Retrofit): MoviesApi{
+        return retrofit.create(MoviesApi::class.java)
     }
 }
