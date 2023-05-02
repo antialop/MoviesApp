@@ -1,5 +1,6 @@
 package com.example.moviesapp.data.network.model
 
+import com.example.moviesapp.ui.domain.PopularMovieItem
 import com.google.gson.annotations.SerializedName
 
 data class PopularMovieResponse(
@@ -9,7 +10,3 @@ data class PopularMovieResponse(
     @SerializedName("total_pages") val pages: Int,
 )
 
-data class PopularMovieItem(
-    @SerializedName("poster_path") var poster: String,
-    @SerializedName("original_title") val name: String
-)
