@@ -12,6 +12,7 @@ data class PopularMovie(
 )
 
 data class PopularMovieItem(
+    @SerializedName("id") var id: String,
     @SerializedName("poster_path") var poster: String,
     @SerializedName("original_title") val name: String
 )

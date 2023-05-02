@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
     var getPopularMoviesUseCase: PopularMoviesUseCase
 ):ViewModel() {
 
-    private val popularMovie = MutableLiveData<List<PopularMovieItem>>()
+    val popularMovie = MutableLiveData<List<PopularMovieItem>>()
 
     fun allPopularMovies(){
         viewModelScope.launch {
