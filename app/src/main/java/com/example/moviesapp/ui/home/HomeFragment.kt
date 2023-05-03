@@ -46,6 +46,7 @@ class HomeFragment : Fragment() {
         //binding.rvPopularMovie.layoutManager = GridLayoutManager(this.context,2)
         binding.rvPopularMovie.adapter = adapter
         viewModel.allPopularMovies()
+        viewModel.allDetailsMovie("640146")
     }
 
     override fun onCreateView(
