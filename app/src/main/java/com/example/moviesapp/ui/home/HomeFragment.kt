@@ -13,6 +13,7 @@ import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentHomeBinding
 import com.example.moviesapp.ui.MainActivity
@@ -41,7 +42,8 @@ class HomeFragment : Fragment() {
 
         adapter = PopularMoviesAdapter(emptyList())
         binding.rvPopularMovie.setHasFixedSize(true)
-        binding.rvPopularMovie.layoutManager = GridLayoutManager(this.context,2)
+        binding.rvPopularMovie.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
+        //binding.rvPopularMovie.layoutManager = GridLayoutManager(this.context,2)
         binding.rvPopularMovie.adapter = adapter
         viewModel.allPopularMovies()
     }
