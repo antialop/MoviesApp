@@ -11,14 +11,8 @@ data class MovieDetail(
     @SerializedName("runtime") val runtime: Int,
     @SerializedName("budget") val budget: Long,
     @SerializedName("revenue") val revenue: Long,
-    @SerializedName("belongs_to_collection") val belongs_to_collection: BelongCollection
 )
 
-data class BelongCollection(
-    @SerializedName("id") val id: Long,
-    @SerializedName("name") val name: String,
-    @SerializedName("poster_path") val poster: String
-)
 
 fun MovieDetailResponse.toDomain() = MovieDetail(
-    original_title, overview, poster_path, release_date, runtime, budget, revenue,belongs_to_collection)
+    original_title, overview, poster_path, release_date, runtime, budget, revenue)

@@ -1,6 +1,5 @@
 package com.example.moviesapp.data.network.model
 
-import com.example.moviesapp.ui.domain.BelongCollection
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetailResponse(
@@ -11,5 +10,4 @@ data class MovieDetailResponse(
     @SerializedName("runtime") val runtime: Int,
     @SerializedName("budget") val budget: Long,
     @SerializedName("revenue") val revenue: Long,
-    @SerializedName("belongs_to_collection") val belongs_to_collection: BelongCollection
 )

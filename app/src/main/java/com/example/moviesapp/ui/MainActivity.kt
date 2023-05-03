@@ -26,6 +26,5 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         bottomNavigationView.setupWithNavController(navController)
-        //viewModel.allPopularMovies()
     }
 }

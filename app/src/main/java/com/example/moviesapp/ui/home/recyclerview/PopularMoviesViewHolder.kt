@@ -9,9 +9,13 @@ import com.squareup.picasso.Picasso
 class PopularMoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemPopularMovieBinding.bind(view)
 
-    fun bind(popularMovieItem: PopularMovieItem) {
+    fun bind(popularMovieItem: PopularMovieItem,onItemSelected: (String) -> Unit) {
         Picasso.get()
             .load("https://image.tmdb.org/t/p/w500"+popularMovieItem.poster)
             .into(binding.ivPopularMovie)
+        binding.root.setOnClickListener {
+            //Cada vez que se pulse la lista le pasamos el id
+            onItemSelected(popularMovieItem.id)
+        }
     }
 }
