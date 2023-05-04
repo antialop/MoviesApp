@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class UpcomingMovieResponse (
     @SerializedName("dates") val date: Dates,
     @SerializedName("page") val page: Int,
-    @SerializedName("results") val popularMovies: List<UpcomingMovieItem>,
+    @SerializedName("results") val upcomingMovies: List<UpcomingMovieItem>,
     @SerializedName("total_results") val total: Int,
     @SerializedName("total_pages") val pages: Int,
 )

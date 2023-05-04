@@ -41,6 +41,7 @@ class HomeFragment : Fragment() {
         //binding.rvPopularMovie.layoutManager = GridLayoutManager(this.context,2)
         binding.rvPopularMovie.adapter = adapter
         viewModel.allPopularMovies()
+        viewModel.allUpcomingMovies()
 
     }
 
