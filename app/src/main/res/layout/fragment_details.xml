@@ -10,7 +10,7 @@
         android:id="@+id/ivMoviePoster"
         android:layout_width="match_parent"
         android:layout_height="550dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,71 +18,103 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="220dp"
         android:elevation="8dp"
         app:cardCornerRadius="42dp"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+
+        <GridLayout
+            android:id="@+id/GridLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:orientation="horizontal"
+            android:rowCount="2">
 
             <TextView
                 android:id="@+id/tvOriginalTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/bebas_neue"
                 android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:textSize="28sp"
+                android:textColor="@color/white"
+                android:textSize="32sp"
                 android:textStyle="bold"
                 tools:text="Antia" />
 
-            <TextView
-                android:id="@+id/tvRealeaseDate"
-                android:drawableLeft="@drawable/ic_calendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:textStyle="italic"
-                tools:text="Antia" />
+            <LinearLayout android:layout_width="394dp">
 
-            <TextView
-                android:id="@+id/tvRuntime"
-                android:drawableLeft="@drawable/ic_watch"
-                android:drawablePadding="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="11sp"
-                tools:text="Antia" />
-            <TextView
-                android:id="@+id/tvBudget"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="11sp"
-                tools:text="Antia" />
-            <TextView
-                android:id="@+id/tvRevenue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="11sp"
-                tools:text="Antia" />
+                <TextView
+                    android:id="@+id/tvRealeaseDate"
+                    android:layout_width="152dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bebas_neue"
+                    android:drawableStart="@drawable/ic_date"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="Antia" />
+
+                <TextView
+                    android:id="@+id/tvRuntime"
+                    android:fontFamily="@font/bebas_neue"
+                    android:layout_width="157dp"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_time"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="Antia" />
+
+                <ImageView
+                    android:id="@+id/favoriteStar"
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    app:srcCompat="@drawable/ic_add_to_watchlist" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tvOverview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="20sp"
+                android:padding="15dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:fontFamily="@font/bebas_neue"
                 tools:text="Antia" />
 
-        </LinearLayout>
+
+        </GridLayout>
+
+
+        <!--            <TextView
+                        android:id="@+id/tvBudget"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        tools:text="Antia" />
+                    <TextView
+                        android:id="@+id/tvRevenue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        tools:text="Antia" />-->
 
 
     </androidx.cardview.widget.CardView>

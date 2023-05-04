@@ -47,8 +47,8 @@ class DetailsFragment : Fragment() {
         binding.tvOriginalTitle.text = movie.original_title
         binding.tvRealeaseDate.text = movie.release_date
         binding.tvRuntime.text = movie.runtime.toString() + " min"
-        binding.tvBudget.text = "Budget: " + movie.budget.toString() + " $"
-        binding.tvRevenue.text = "Revenue: " + movie.revenue.toString() + " $"
+        //binding.tvBudget.text = "Budget: " + movie.budget.toString() + " $"
+        //binding.tvRevenue.text = "Revenue: " + movie.revenue.toString() + " $"
         binding.tvOverview.text = movie.overview
 
     }
