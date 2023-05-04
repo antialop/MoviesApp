@@ -1,6 +1,7 @@
 package com.example.moviesapp.ui.home.recyclerview
 
 import android.view.View
+import androidx.core.view.ViewCompat.setNestedScrollingEnabled
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.databinding.ItemPopularMovieBinding
 import com.example.moviesapp.ui.domain.PopularMovieItem
