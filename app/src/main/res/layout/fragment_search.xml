@@ -28,6 +28,7 @@
         app:iconifiedByDefault="false"
         android:layout_height="wrap_content"
         app:searchIcon="@drawable/search_icon_white"
+        app:closeIcon="@drawable/ic_close_white"
         app:queryHint="Search..."
         />
 
