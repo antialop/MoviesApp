@@ -3,6 +3,7 @@ package com.example.moviesapp.data.network
 import com.example.moviesapp.data.network.model.MovieDetailResponse
 import com.example.moviesapp.data.network.model.PopularMovieResponse
 import com.example.moviesapp.data.network.model.SearchMovieResponse
+import com.example.moviesapp.data.network.model.UpcomingMovieResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -25,6 +26,13 @@ class MoviesService @Inject constructor(private val api:MoviesApi) {
         return withContext(Dispatchers.IO){
             val response = api.getMoviesByName(movie)
             response.execute().body()!!
+        }
+    }
+
+    suspend fun getUpcoming(): UpcomingMovieResponse {
+        return withContext(Dispatchers.IO){
+            val response = api.getUpcomingMovies()
+            response.body()!!
         }
     }
 }
