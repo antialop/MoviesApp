@@ -18,13 +18,14 @@
         />
 
     <androidx.appcompat.widget.SearchView
+        android:background="@color/white"
         android:id="@+id/searchView"
         android:layout_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:iconifiedByDefault="false"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovie"
