@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.moviesapp.R
+import com.example.moviesapp.databinding.ActivityMainBinding
 import com.example.moviesapp.ui.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,15 +17,29 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
+
     private val viewModel by viewModels<HomeViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottonNavigationView)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val bottomNavigationView = binding.bottonNavView
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
         bottomNavigationView.setupWithNavController(navController)
-    }
+
+        binding.bottonNavView.setOnItemSelectedListener {
+            when(it.itemId){
+                binding.bottonNavView.menu.getItem(0).itemId -> navController.navigate(it.itemId)
+                binding.bottonNavView.menu.getItem(1).itemId -> navController.navigate(it.itemId)
+                binding.bottonNavView.menu.getItem(2).itemId -> navController.navigate(it.itemId)
+                }
+            true
+            }
+        }
+
 }

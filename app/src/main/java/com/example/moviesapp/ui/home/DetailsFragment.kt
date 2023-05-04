@@ -42,12 +42,13 @@ class DetailsFragment : Fragment() {
     }
 
     private fun createUI(movie: MovieDetail) {
-        Picasso.get().load("https://image.tmdb.org/t/p/w500"+movie.poster_path).into(binding.ivMoviePoster)
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.poster_path)
+            .into(binding.ivMoviePoster)
         binding.tvOriginalTitle.text = movie.original_title
         binding.tvRealeaseDate.text = movie.release_date
-        binding.tvRuntime.text = movie.runtime.toString() +" min"
-        binding.tvBudget.text = "Budget: " + movie.budget.toString() +" $"
-        binding.tvRevenue.text = "Revenue: " + movie.revenue.toString()+" $"
+        binding.tvRuntime.text = movie.runtime.toString() + " min"
+        binding.tvBudget.text = "Budget: " + movie.budget.toString() + " $"
+        binding.tvRevenue.text = "Revenue: " + movie.revenue.toString() + " $"
         binding.tvOverview.text = movie.overview
 
     }
@@ -57,7 +58,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentDetailsBinding.inflate(inflater,container,false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
