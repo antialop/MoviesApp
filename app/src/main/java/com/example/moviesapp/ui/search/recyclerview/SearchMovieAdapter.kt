@@ -8,7 +8,8 @@ import com.example.moviesapp.ui.domain.SearchMovieItem
 
 
 class SearchMovieAdapter(
-     private var searchMovieList: List<SearchMovieItem>
+     private var searchMovieList: List<SearchMovieItem>,
+     private val onItemSelected:(String) -> Unit
 ) : RecyclerView.Adapter<SearchMovieViewHolder>() {
 
     fun updateList(searchList: List<SearchMovieItem>) {
@@ -30,6 +31,6 @@ class SearchMovieAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: SearchMovieViewHolder, position: Int) {
-        viewHolder.bind(searchMovieList[position])
+        viewHolder.bind(searchMovieList[position],onItemSelected)
     }
 }

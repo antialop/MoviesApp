@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentHomeBinding
@@ -47,7 +48,7 @@ class SearchFragment : Fragment() {
             //Busca a medida que vamos escribiendo
             override fun onQueryTextChange(newText: String?) = false
         })
-        adapter = SearchMovieAdapter(emptyList())
+        adapter = SearchMovieAdapter(emptyList()){ navigateToDetail(it) }
         binding.rvMovie.setHasFixedSize(true)
         binding.rvMovie.layoutManager = GridLayoutManager(this.context,2)
         binding.rvMovie.adapter = adapter
@@ -60,6 +61,11 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater,container,false)
         return binding.root
+    }
+    private fun navigateToDetail(id:String) {
+        val myInformacion = Bundle()
+        myInformacion.putString("id",id)
+        findNavController().navigate(R.id.detailFragment,myInformacion)
     }
 
 }
