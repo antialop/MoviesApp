@@ -10,7 +10,6 @@
         android:id="@+id/tvMovies"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/bebas_neue"
         android:gravity="center"
@@ -27,26 +26,48 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="428dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/bebas_neue"
         android:text="Trending Movies"
+        android:textColor="@color/white"
         android:textSize="24dp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tvMovies"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMovies" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPopularMovie"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="402dp"
+        android:layout_height="231dp"
         android:fontFamily="@font/bebas_neue"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitlePopular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-  />
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitlePopular" />
+    <TextView
+        android:id="@+id/tvTitleUpcoming"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bebas_neue"
+        android:text="Trending Movies"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/tvMovies"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvPopularMovie" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUpcomingMovie"
+        android:layout_width="402dp"
+        android:layout_height="231dp"
+        android:fontFamily="@font/bebas_neue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleUpcoming" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,16 +13,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentHomeBinding
 import com.example.moviesapp.ui.home.recyclerview.PopularMoviesAdapter
+import com.example.moviesapp.ui.home.recyclerview.UpcomingMoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel>()
 
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: PopularMoviesAdapter
+    private lateinit var adapterUpcoming: UpcomingMoviesAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,12 +35,18 @@ class HomeFragment : Fragment() {
         viewModel.popularMovie.observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
+        viewModel.upcomingMovie.observe(viewLifecycleOwner, Observer {
+            adapterUpcoming.updateList(it)
+        })
 
         adapter = PopularMoviesAdapter(emptyList()) { navigateToDetail(it) }
+        adapterUpcoming = UpcomingMoviesAdapter(emptyList()) { navigateToDetail(it) }
         binding.rvPopularMovie.setHasFixedSize(true)
+        binding.rvUpcomingMovie.setHasFixedSize(true)
         binding.rvPopularMovie.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
-        //binding.rvPopularMovie.layoutManager = GridLayoutManager(this.context,2)
+        binding.rvUpcomingMovie.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
         binding.rvPopularMovie.adapter = adapter
+        binding.rvUpcomingMovie.adapter = adapterUpcoming
         viewModel.allPopularMovies()
         viewModel.allUpcomingMovies()
 
