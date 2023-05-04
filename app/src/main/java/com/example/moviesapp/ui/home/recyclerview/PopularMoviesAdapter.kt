@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
 import com.example.moviesapp.ui.domain.PopularMovieItem
-import javax.inject.Inject
 
 class PopularMoviesAdapter (
     private var popularMoviesList: List<PopularMovieItem>,
@@ -13,8 +12,8 @@ class PopularMoviesAdapter (
 
 ) : RecyclerView.Adapter<PopularMoviesViewHolder>() {
 
-    fun updateList(superheroList: List<PopularMovieItem>) {
-        this.popularMoviesList = superheroList
+    fun updateList(popularList: List<PopularMovieItem>) {
+        this.popularMoviesList = popularList
         notifyDataSetChanged()
     }
 

@@ -16,9 +16,9 @@ class SearchViewModel @Inject constructor(
 ):ViewModel() {
 
     val searchMovie = MutableLiveData<List<SearchMovieItem>>()
-    fun movieSearchByName(){
+    fun movieSearchByName(query: String){
         viewModelScope.launch {
-            val result = getSearchMoviesUseCase("harry")
+            val result = getSearchMoviesUseCase(query)
             Log.i("SearchcallApi", result.movie.toString())
             searchMovie.postValue(result.movie)
         }
