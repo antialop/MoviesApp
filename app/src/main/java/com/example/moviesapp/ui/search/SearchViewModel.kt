@@ -20,7 +20,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             val result = getSearchMoviesUseCase("harry")
             Log.i("SearchcallApi", result.movie.toString())
-            searchMovie.postValue(result.movie!!)
+            searchMovie.postValue(result.movie)
         }
     }
 }

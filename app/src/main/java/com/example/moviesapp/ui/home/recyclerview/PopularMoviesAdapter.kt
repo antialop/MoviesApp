@@ -7,7 +7,7 @@ import com.example.moviesapp.R
 import com.example.moviesapp.ui.domain.PopularMovieItem
 import javax.inject.Inject
 
-class PopularMoviesAdapter @Inject constructor(
+class PopularMoviesAdapter (
     private var popularMoviesList: List<PopularMovieItem>,
     private val onItemSelected:(String) -> Unit
 
