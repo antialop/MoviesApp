@@ -1,6 +1,7 @@
 package com.example.moviesapp.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moviesapp.R
-import com.example.moviesapp.databinding.FragmentHomeBinding
 import com.example.moviesapp.databinding.FragmentSearchBinding
-import com.example.moviesapp.ui.home.HomeViewModel
-import com.example.moviesapp.ui.home.recyclerview.PopularMoviesAdapter
+import com.example.moviesapp.ui.domain.MovieItem
 import com.example.moviesapp.ui.search.recyclerview.SearchMovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,10 +24,10 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: SearchMovieAdapter
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+
 
     }
 
@@ -37,6 +36,8 @@ class SearchFragment : Fragment() {
             adapter.updateList(it)
             binding.progressBar.isVisible = false
         })
+
+        viewModel.getAllWatchlistMovie()
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             //Busca al pulsar boton
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -48,10 +49,11 @@ class SearchFragment : Fragment() {
             //Busca a medida que vamos escribiendo
             override fun onQueryTextChange(newText: String?) = false
         })
-        adapter = SearchMovieAdapter(emptyList()){ navigateToDetail(it) }
+        adapter = SearchMovieAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistPopularMovieToDataBase(it)}, removeWatchlistMovie = {removeWatchlistMovieToDataBase(it)})
         binding.rvMovie.setHasFixedSize(true)
         binding.rvMovie.layoutManager = GridLayoutManager(this.context,2)
         binding.rvMovie.adapter = adapter
+
     }
 
     override fun onCreateView(
@@ -68,4 +70,11 @@ class SearchFragment : Fragment() {
         findNavController().navigate(R.id.detailFragment,myInformacion)
     }
 
+    private fun addWatchlistPopularMovieToDataBase(popularMovieItem: MovieItem){
+        viewModel.insertWatchlistPopularMovie(popularMovieItem)
+
+    }
+    private fun removeWatchlistMovieToDataBase(popularMovie: String){
+        viewModel.deleteWatchlistMovie(popularMovie)
+    }
 }

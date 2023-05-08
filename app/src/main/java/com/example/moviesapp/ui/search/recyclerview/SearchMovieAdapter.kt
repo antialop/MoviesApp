@@ -4,15 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
-import com.example.moviesapp.ui.domain.SearchMovieItem
+import com.example.moviesapp.ui.domain.MovieItem
 
 
 class SearchMovieAdapter(
-     private var searchMovieList: List<SearchMovieItem>,
-     private val onItemSelected:(String) -> Unit
+    private var searchMovieList: List<MovieItem> = emptyList(),
+    private val onItemSelected:(String) -> Unit,
+    private val addWatchlistMovie: (MovieItem) -> Unit,
+    private val removeWatchlistMovie: (String) -> Unit
 ) : RecyclerView.Adapter<SearchMovieViewHolder>() {
 
-    fun updateList(searchList: List<SearchMovieItem>) {
+    fun updateList(searchList: List<MovieItem>) {
         this.searchMovieList = searchList
         notifyDataSetChanged()
     }
@@ -20,7 +22,7 @@ class SearchMovieAdapter(
         val layoutInflater = LayoutInflater.from(parent.context)
         return SearchMovieViewHolder(
             layoutInflater.inflate(
-                R.layout.item_movie,
+                R.layout.item_popular_movie,
                 parent,
                 false
             )
@@ -31,6 +33,6 @@ class SearchMovieAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: SearchMovieViewHolder, position: Int) {
-        viewHolder.bind(searchMovieList[position],onItemSelected)
+        viewHolder.bind(searchMovieList[position],onItemSelected,addWatchlistMovie,removeWatchlistMovie)
     }
 }

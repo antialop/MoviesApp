@@ -16,4 +16,6 @@ interface WatchlistMovieDao {
 
     @Query("DELETE FROM watchlist_table WHERE idWatchlist = :idWatchlist")
     suspend fun removeWatchlistMovie(idWatchlist: String)
+
+
 }

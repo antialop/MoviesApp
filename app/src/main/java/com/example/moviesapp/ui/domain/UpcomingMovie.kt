@@ -19,6 +19,7 @@ data class Dates(
 data class UpcomingMovieItem(
     @SerializedName("id") var id: String,
     @SerializedName("poster_path") var poster: String,
-    @SerializedName("original_title") val name: String
+    @SerializedName("original_title") val name: String,
+    var esFavorito:Boolean = false
 )
 fun UpcomingMovieResponse.toDomain() = UpcomingMovie(date,page,upcomingMovies,total,pages)

@@ -7,6 +7,6 @@ class RemoveWatchlistMovieUseCase@Inject constructor(
     private val repository: MoviesRespository
 ) {
     suspend operator fun invoke(movieId: String){
-        repository.removeWatchlistMovie(movieId)
+        repository.removeWatchlistMovieDatabase(movieId)
     }
 }

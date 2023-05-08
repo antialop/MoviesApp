@@ -11,7 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentHomeBinding
-import com.example.moviesapp.ui.domain.PopularMovieItem
+import com.example.moviesapp.ui.domain.MovieItem
+import com.example.moviesapp.ui.domain.UpcomingMovieItem
 import com.example.moviesapp.ui.home.recyclerview.PopularMoviesAdapter
 import com.example.moviesapp.ui.home.recyclerview.UpcomingMoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,8 +39,8 @@ class HomeFragment : Fragment() {
             adapterUpcoming.updateList(it)
         })
 
-        adapter = PopularMoviesAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistMovieToDataBase(it)}, removeWatchlisMovie = {removeWatchlistMovieToDataBase(it)})
-        adapterUpcoming = UpcomingMoviesAdapter(emptyList()) { navigateToDetail(it) }
+        adapter = PopularMoviesAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistPopularMovieToDataBase(it)}, removeWatchlisMovie = {removeWatchlistMovieToDataBase(it)})
+        adapterUpcoming = UpcomingMoviesAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistUpcomingMovieToDataBase(it)}, removeWatchlistMovie = {removeWatchlistMovieToDataBase(it)})
         binding.rvPopularMovie.setHasFixedSize(true)
         binding.rvUpcomingMovie.setHasFixedSize(true)
         binding.rvPopularMovie.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
@@ -64,13 +65,16 @@ class HomeFragment : Fragment() {
         myInformacion.putString("id",id)
         findNavController().navigate(R.id.detailFragment,myInformacion)
     }
-    private fun addWatchlistMovieToDataBase(popularMovieItem: PopularMovieItem){
-        viewModel.insertWatchlistMovie(popularMovieItem)
+    private fun addWatchlistPopularMovieToDataBase(popularMovieItem: MovieItem){
+        viewModel.insertWatchlistPopularMovie(popularMovieItem)
+
+    }
+    private fun addWatchlistUpcomingMovieToDataBase(upcomingMovieItem: UpcomingMovieItem){
+        viewModel.insertWatchlistUpcomingMovie(upcomingMovieItem)
     }
     private fun removeWatchlistMovieToDataBase(popularMovie: String){
         viewModel.deleteWatchlistMovie(popularMovie)
     }
-
 
 
 }

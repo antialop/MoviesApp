@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentDetailsBinding
-import com.example.moviesapp.databinding.FragmentHomeBinding
 import com.example.moviesapp.ui.domain.MovieDetail
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Observer
 
 
 @AndroidEntryPoint
@@ -47,8 +44,6 @@ class DetailsFragment : Fragment() {
         binding.tvOriginalTitle.text = movie.original_title
         binding.tvRealeaseDate.text = movie.release_date
         binding.tvRuntime.text = movie.runtime.toString() + " min"
-        //binding.tvBudget.text = "Budget: " + movie.budget.toString() + " $"
-        //binding.tvRevenue.text = "Revenue: " + movie.revenue.toString() + " $"
         binding.tvOverview.text = movie.overview
 
     }

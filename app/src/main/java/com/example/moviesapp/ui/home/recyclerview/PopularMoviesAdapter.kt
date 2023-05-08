@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
-import com.example.moviesapp.ui.domain.PopularMovieItem
+import com.example.moviesapp.ui.domain.MovieItem
 
 class PopularMoviesAdapter (
-    private var popularMoviesList: List<PopularMovieItem> = emptyList(),
+    private var popularMoviesList: List<MovieItem> = emptyList(),
     private val onItemSelected:(String) -> Unit,
-    private val addWatchlistMovie: (PopularMovieItem) -> Unit,
+    private val addWatchlistMovie: (MovieItem) -> Unit,
     private val removeWatchlisMovie: (String) -> Unit
 
 ) : RecyclerView.Adapter<PopularMoviesViewHolder>() {
 
-    fun updateList(popularList: List<PopularMovieItem>) {
+    fun updateList(popularList: List<MovieItem>) {
         this.popularMoviesList = popularList
         notifyDataSetChanged()
     }

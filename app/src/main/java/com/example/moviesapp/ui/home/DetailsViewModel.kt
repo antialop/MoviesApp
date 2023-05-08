@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    var getMoviesDetailsUseCase: MoviesDetailsUseCase
+    var getMoviesDetailsUseCase: MoviesDetailsUseCase,
 ): ViewModel(){
     val detailsMovie = MutableLiveData<MovieDetail>()
     fun allDetailsMovie(id:String){
@@ -22,4 +22,5 @@ class DetailsViewModel @Inject constructor(
             detailsMovie.postValue(result)
         }
     }
+
 }

@@ -4,15 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
-import com.example.moviesapp.ui.domain.PopularMovieItem
 import com.example.moviesapp.ui.domain.UpcomingMovieItem
 
 
 class UpcomingMoviesAdapter(
-    private var upcomingMovieList: List<UpcomingMovieItem>,
+    private var upcomingMovieList: List<UpcomingMovieItem> = emptyList(),
     private val onItemSelected: (String) -> Unit,
-    //private val addWatchlistMovie: (PopularMovieItem) -> Unit,
-    //private val removeWatchlistMovie: (String) -> Unit
+    private val addWatchlistMovie: (UpcomingMovieItem) -> Unit,
+    private val removeWatchlistMovie: (String) -> Unit
 
 ) : RecyclerView.Adapter<UpcomingMoviesViewHolder>() {
 
@@ -37,7 +36,7 @@ class UpcomingMoviesAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: UpcomingMoviesViewHolder, position: Int) {
-        viewHolder.bind(upcomingMovieList[position],onItemSelected)
+        viewHolder.bind(upcomingMovieList[position],onItemSelected,addWatchlistMovie,removeWatchlistMovie)
     }
 
 }

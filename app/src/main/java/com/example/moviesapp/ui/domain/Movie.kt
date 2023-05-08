@@ -1,21 +1,20 @@
 package com.example.moviesapp.ui.domain
 
-import android.graphics.pdf.PdfDocument.Page
-import com.example.moviesapp.data.network.model.PopularMovieResponse
+import com.example.moviesapp.data.network.model.MovieResponse
 import com.google.gson.annotations.SerializedName
 
-data class PopularMovie(
+data class Movie(
     val page: Int,
-    val popularMovies: List<PopularMovieItem>,
+    val popularMovies: List<MovieItem>,
     val total: Int,
     val pages: Int,
 )
 
-data class PopularMovieItem(
+data class MovieItem(
     @SerializedName("id") var id: String,
     @SerializedName("poster_path") var poster: String,
     @SerializedName("original_title") val name: String,
     var esFavorito:Boolean = false
 
 )
-fun PopularMovieResponse.toDomain() = PopularMovie(page,popularMovies,total,pages)
+fun MovieResponse.toDomain() = Movie(page,popularMovies,total,pages)
