@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentHomeBinding
+import com.example.moviesapp.ui.domain.PopularMovieItem
 import com.example.moviesapp.ui.home.recyclerview.PopularMoviesAdapter
 import com.example.moviesapp.ui.home.recyclerview.UpcomingMoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel>()
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: PopularMoviesAdapter
@@ -39,7 +38,7 @@ class HomeFragment : Fragment() {
             adapterUpcoming.updateList(it)
         })
 
-        adapter = PopularMoviesAdapter(emptyList()) { navigateToDetail(it) }
+        adapter = PopularMoviesAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistMovieToDataBase(it)}, removeWatchlisMovie = {removeWatchlistMovieToDataBase(it)})
         adapterUpcoming = UpcomingMoviesAdapter(emptyList()) { navigateToDetail(it) }
         binding.rvPopularMovie.setHasFixedSize(true)
         binding.rvUpcomingMovie.setHasFixedSize(true)
@@ -65,6 +64,13 @@ class HomeFragment : Fragment() {
         myInformacion.putString("id",id)
         findNavController().navigate(R.id.detailFragment,myInformacion)
     }
+    private fun addWatchlistMovieToDataBase(popularMovieItem: PopularMovieItem){
+        viewModel.insertWatchlistMovie(popularMovieItem)
+    }
+    private fun removeWatchlistMovieToDataBase(popularMovie: String){
+        viewModel.deleteWatchlistMovie(popularMovie)
+    }
+
 
 
 }

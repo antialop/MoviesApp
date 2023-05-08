@@ -2,6 +2,7 @@ package com.example.moviesapp.ui.home.recyclerview
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviesapp.databinding.ItemMovieBinding
 import com.example.moviesapp.databinding.ItemPopularMovieBinding
 import com.example.moviesapp.ui.domain.UpcomingMovieItem
 import com.squareup.picasso.Picasso

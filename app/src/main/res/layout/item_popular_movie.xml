@@ -14,8 +14,15 @@
             android:id="@+id/ivPopularMovie"
             android:layout_width="150dp"
             android:layout_height="220dp"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/watchlistMovie"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+
+            app:srcCompat="@drawable/ic_add_to_watchlist" />
 
     </FrameLayout>
 

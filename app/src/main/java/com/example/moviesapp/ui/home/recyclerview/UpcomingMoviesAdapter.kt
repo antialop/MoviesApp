@@ -10,7 +10,9 @@ import com.example.moviesapp.ui.domain.UpcomingMovieItem
 
 class UpcomingMoviesAdapter(
     private var upcomingMovieList: List<UpcomingMovieItem>,
-    private val onItemSelected: (String) -> Unit
+    private val onItemSelected: (String) -> Unit,
+    //private val addWatchlistMovie: (PopularMovieItem) -> Unit,
+    //private val removeWatchlistMovie: (String) -> Unit
 
 ) : RecyclerView.Adapter<UpcomingMoviesViewHolder>() {
 

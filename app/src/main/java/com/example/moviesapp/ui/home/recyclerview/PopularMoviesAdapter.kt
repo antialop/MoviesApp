@@ -7,8 +7,10 @@ import com.example.moviesapp.R
 import com.example.moviesapp.ui.domain.PopularMovieItem
 
 class PopularMoviesAdapter (
-    private var popularMoviesList: List<PopularMovieItem>,
-    private val onItemSelected:(String) -> Unit
+    private var popularMoviesList: List<PopularMovieItem> = emptyList(),
+    private val onItemSelected:(String) -> Unit,
+    private val addWatchlistMovie: (PopularMovieItem) -> Unit,
+    private val removeWatchlisMovie: (String) -> Unit
 
 ) : RecyclerView.Adapter<PopularMoviesViewHolder>() {
 
@@ -33,6 +35,6 @@ class PopularMoviesAdapter (
     }
 
     override fun onBindViewHolder(viewHolder: PopularMoviesViewHolder, position: Int) {
-        viewHolder.bind(popularMoviesList[position],onItemSelected)
+        viewHolder.bind(popularMoviesList[position],onItemSelected,addWatchlistMovie,removeWatchlisMovie)
     }
 }

@@ -18,4 +18,8 @@ object RoomModule {
     @Provides
     fun provideRoom(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, WatchlistMovieDatabase::class.java, WATCHLIST_MOVIE_DATABASE).build()
+
+    @Singleton
+    @Provides
+    fun provideWathlistMovie(db:WatchlistMovieDatabase) = db.getWatchListMovieDao()
 }

@@ -4,8 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviesapp.data.database.entities.toDatabase
+import com.example.moviesapp.ui.domain.InsertWatchlistMovieUseCase
 import com.example.moviesapp.ui.domain.PopularMovieItem
 import com.example.moviesapp.ui.domain.PopularMoviesUseCase
+import com.example.moviesapp.ui.domain.RemoveWatchlistMovieUseCase
 import com.example.moviesapp.ui.domain.UpcomingMovieItem
 import com.example.moviesapp.ui.domain.UpcomingMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +18,9 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     var getPopularMoviesUseCase: PopularMoviesUseCase,
-    var getUpcomingMoviesUseCase: UpcomingMoviesUseCase
+    var getUpcomingMoviesUseCase: UpcomingMoviesUseCase,
+    private val insertWatchlistMovieUseCase: InsertWatchlistMovieUseCase,
+    private val removeWatchlistMovieUseCase: RemoveWatchlistMovieUseCase
 
 ):ViewModel() {
 
@@ -36,4 +41,15 @@ class HomeViewModel @Inject constructor(
             upcomingMovie.postValue(result.upcomingMovies!!)
         }
     }
+    fun insertWatchlistMovie(popularMovieItem: PopularMovieItem){
+        viewModelScope.launch {
+           insertWatchlistMovieUseCase(popularMovieItem.toDatabase())
+        }
+    }
+    fun deleteWatchlistMovie(popularMovieId: String){
+        viewModelScope.launch {
+           removeWatchlistMovieUseCase(popularMovieId)
+        }
+    }
+
 }

@@ -53,11 +53,11 @@
 
                 <TextView
                     android:id="@+id/tvRealeaseDate"
-                    android:layout_width="152dp"
+                    android:layout_width="216dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/bebas_neue"
                     android:drawableStart="@drawable/ic_date"
                     android:drawablePadding="10dp"
+                    android:fontFamily="@font/bebas_neue"
                     android:padding="10dp"
                     android:textColor="@color/white"
                     android:textSize="16sp"
@@ -65,23 +65,16 @@
 
                 <TextView
                     android:id="@+id/tvRuntime"
-                    android:fontFamily="@font/bebas_neue"
-                    android:layout_width="157dp"
+                    android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_time"
                     android:drawablePadding="10dp"
+                    android:fontFamily="@font/bebas_neue"
                     android:padding="10dp"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     tools:text="Antia" />
 
-                <ImageView
-                    android:id="@+id/favoriteStar"
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:layout_gravity="end"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/ic_add_to_watchlist" />
             </LinearLayout>
 
             <TextView
