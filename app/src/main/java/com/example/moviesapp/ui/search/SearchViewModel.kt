@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviesapp.data.database.entities.toDatabase
+import com.example.moviesapp.data.network.model.Watchlist
+import com.example.moviesapp.ui.MainActivity
 import com.example.moviesapp.ui.domain.GetWatchListMoviesUseCase
 import com.example.moviesapp.ui.domain.InsertWatchlistMovieUseCase
 import com.example.moviesapp.ui.domain.MovieItem
@@ -34,19 +36,21 @@ class SearchViewModel @Inject constructor(
     fun insertWatchlistPopularMovie(popularMovieItem: MovieItem){
         viewModelScope.launch {
             insertWatchlistMovieUseCase(popularMovieItem.toDatabase())
+            MainActivity.watchlist.add(Watchlist(popularMovieItem.id))
+            Log.i("lista", MainActivity.watchlist.toString())
         }
     }
 
     fun deleteWatchlistMovie(popularMovieId: String){
         viewModelScope.launch {
             removeWatchlistMovieUseCase(popularMovieId)
+            MainActivity.watchlist.remove(Watchlist(popularMovieId))
         }
     }
     fun getAllWatchlistMovie(){
         viewModelScope.launch {
             val result = getWatchListMoviesUseCase()
             Log.i("watchlist", result.toString())
-
         }
     }
 }

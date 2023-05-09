@@ -5,16 +5,17 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.ItemPopularMovieBinding
-import com.example.moviesapp.ui.domain.UpcomingMovieItem
+import com.example.moviesapp.ui.MainActivity
+import com.example.moviesapp.ui.domain.TopRatedMovieItem
 import com.squareup.picasso.Picasso
 
-class UpcomingMoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class TopRatedMoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemPopularMovieBinding.bind(view)
 
-    fun bind(upcomingMovieItem: UpcomingMovieItem,
+    fun bind(upcomingMovieItem: TopRatedMovieItem,
              onItemSelected: (String) -> Unit,
-             addWatchlist: (UpcomingMovieItem) -> Unit,
+             addWatchlist: (TopRatedMovieItem) -> Unit,
              removeWatchlist: (String) -> Unit) {
         Picasso.get()
             .load("https://image.tmdb.org/t/p/w500" + upcomingMovieItem.poster)
@@ -23,17 +24,30 @@ class UpcomingMoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             //Cada vez que se pulse la lista le pasamos el id
             onItemSelected(upcomingMovieItem.id)
         }
+        if(containsMovie(upcomingMovieItem)){
+            binding.watchlistMovie.setImageResource((R.drawable.ic_added_to_watchlist))
+        }else{
+            binding.watchlistMovie.setImageResource((R.drawable.ic_add_to_watchlist))
+        }
         binding.watchlistMovie.setOnClickListener {
-            if (!upcomingMovieItem.esFavorito) {
+            if (!containsMovie(upcomingMovieItem)) {
                 binding.watchlistMovie.setImageResource(R.drawable.ic_added_to_watchlist)
                 addWatchlist(upcomingMovieItem)
-                Log.i("favorie", upcomingMovieItem.toString())
-                upcomingMovieItem.esFavorito = !upcomingMovieItem.esFavorito
+                Log.i("favoriteUpcoming", upcomingMovieItem.toString())
+                //searchMovieItem.esFavorito = !searchMovieItem.esFavorito
             } else {
                 binding.watchlistMovie.setImageResource(R.drawable.ic_add_to_watchlist)
                 removeWatchlist(upcomingMovieItem.id)
-                upcomingMovieItem.esFavorito = !upcomingMovieItem.esFavorito
+                //searchMovieItem.esFavorito = !searchMovieItem.esFavorito
+
             }
         }
     }
+    private fun containsMovie(upcomingMovieItem: TopRatedMovieItem): Boolean{
+        MainActivity.watchlist.forEach {
+            if(it.idMovieWatchlist ==upcomingMovieItem.id) return true
+        }
+        return false
+    }
+
 }

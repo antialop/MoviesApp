@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentHomeBinding
 import com.example.moviesapp.ui.domain.MovieItem
-import com.example.moviesapp.ui.domain.UpcomingMovieItem
+import com.example.moviesapp.ui.domain.TopRatedMovieItem
 import com.example.moviesapp.ui.home.recyclerview.PopularMoviesAdapter
-import com.example.moviesapp.ui.home.recyclerview.UpcomingMoviesAdapter
+import com.example.moviesapp.ui.home.recyclerview.TopRatedMoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: PopularMoviesAdapter
-    private lateinit var adapterUpcoming: UpcomingMoviesAdapter
+    private lateinit var adapterRated: TopRatedMoviesAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,17 +36,17 @@ class HomeFragment : Fragment() {
             adapter.updateList(it)
         })
         viewModel.upcomingMovie.observe(viewLifecycleOwner, Observer {
-            adapterUpcoming.updateList(it)
+            adapterRated.updateList(it)
         })
 
         adapter = PopularMoviesAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistPopularMovieToDataBase(it)}, removeWatchlisMovie = {removeWatchlistMovieToDataBase(it)})
-        adapterUpcoming = UpcomingMoviesAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistUpcomingMovieToDataBase(it)}, removeWatchlistMovie = {removeWatchlistMovieToDataBase(it)})
+        adapterRated = TopRatedMoviesAdapter(onItemSelected =  { navigateToDetail(it) }, addWatchlistMovie ={addWatchlistRatedMovieToDataBase(it)}, removeWatchlistMovie = {removeWatchlistMovieToDataBase(it)})
         binding.rvPopularMovie.setHasFixedSize(true)
-        binding.rvUpcomingMovie.setHasFixedSize(true)
+        binding.rvTopRatedMovie.setHasFixedSize(true)
         binding.rvPopularMovie.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
-        binding.rvUpcomingMovie.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
+        binding.rvTopRatedMovie.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
         binding.rvPopularMovie.adapter = adapter
-        binding.rvUpcomingMovie.adapter = adapterUpcoming
+        binding.rvTopRatedMovie.adapter = adapterRated
         viewModel.allPopularMovies()
         viewModel.allUpcomingMovies()
 
@@ -69,8 +69,8 @@ class HomeFragment : Fragment() {
         viewModel.insertWatchlistPopularMovie(popularMovieItem)
 
     }
-    private fun addWatchlistUpcomingMovieToDataBase(upcomingMovieItem: UpcomingMovieItem){
-        viewModel.insertWatchlistUpcomingMovie(upcomingMovieItem)
+    private fun addWatchlistRatedMovieToDataBase(topRatedMovieItem: TopRatedMovieItem){
+        viewModel.insertWatchlistRatedMovie(topRatedMovieItem)
     }
     private fun removeWatchlistMovieToDataBase(popularMovie: String){
         viewModel.deleteWatchlistMovie(popularMovie)

@@ -58,13 +58,13 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/tvTitleUpcoming"
+                android:id="@+id/tvTitleRated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/bebas_neue"
-                android:text="Upcoming Movies"
+                android:text="TOP 20 MOVIES OF ALL TIME"
                 android:textColor="@color/white"
                 android:textSize="24dp"
                 android:textStyle="bold"
@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvPopularMovie" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvUpcomingMovie"
+                android:id="@+id/rvTopRatedMovie"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"

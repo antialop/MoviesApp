@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviesapp.data.database.entities.toDatabase
+import com.example.moviesapp.data.network.model.Watchlist
+import com.example.moviesapp.ui.MainActivity
+import com.example.moviesapp.ui.domain.GetWatchListMoviesUseCase
 import com.example.moviesapp.ui.domain.InsertWatchlistMovieUseCase
 import com.example.moviesapp.ui.domain.MovieItem
 import com.example.moviesapp.ui.domain.PopularMoviesUseCase
 import com.example.moviesapp.ui.domain.RemoveWatchlistMovieUseCase
-import com.example.moviesapp.ui.domain.UpcomingMovieItem
-import com.example.moviesapp.ui.domain.UpcomingMoviesUseCase
+import com.example.moviesapp.ui.domain.TopRatedMovieItem
+import com.example.moviesapp.ui.domain.TopRatedMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,14 +21,15 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     var getPopularMoviesUseCase: PopularMoviesUseCase,
-    var getUpcomingMoviesUseCase: UpcomingMoviesUseCase,
+    var topRatedMovieUseCase: TopRatedMovieUseCase,
     private val insertWatchlistMovieUseCase: InsertWatchlistMovieUseCase,
     private val removeWatchlistMovieUseCase: RemoveWatchlistMovieUseCase,
+    private val getWatchListMoviesUseCase: GetWatchListMoviesUseCase,
 
-):ViewModel() {
+    ):ViewModel() {
 
     val popularMovie = MutableLiveData<List<MovieItem>>()
-    val upcomingMovie = MutableLiveData<List<UpcomingMovieItem>>()
+    val upcomingMovie = MutableLiveData<List<TopRatedMovieItem>>()
 
     fun allPopularMovies(){
         viewModelScope.launch {
@@ -36,7 +40,7 @@ class HomeViewModel @Inject constructor(
     }
     fun allUpcomingMovies(){
         viewModelScope.launch {
-            val result = getUpcomingMoviesUseCase()
+            val result = topRatedMovieUseCase()
             Log.i("UpcomingcallApi", result.upcomingMovies.toString())
             upcomingMovie.postValue(result.upcomingMovies!!)
         }
@@ -44,17 +48,27 @@ class HomeViewModel @Inject constructor(
     fun insertWatchlistPopularMovie(popularMovieItem: MovieItem){
         viewModelScope.launch {
            insertWatchlistMovieUseCase(popularMovieItem.toDatabase())
+            MainActivity.watchlist.add(Watchlist(popularMovieItem.id))
         }
     }
-    fun insertWatchlistUpcomingMovie(upcomingMovieItem: UpcomingMovieItem){
+    fun insertWatchlistRatedMovie(topRatedMovieItem: TopRatedMovieItem){
         viewModelScope.launch {
-            insertWatchlistMovieUseCase(upcomingMovieItem.toDatabase())
+            insertWatchlistMovieUseCase(topRatedMovieItem.toDatabase())
+            MainActivity.watchlist.add(Watchlist(topRatedMovieItem.id))
         }
     }
 
     fun deleteWatchlistMovie(popularMovieId: String){
         viewModelScope.launch {
            removeWatchlistMovieUseCase(popularMovieId)
+            MainActivity.watchlist.remove(Watchlist(popularMovieId))
+        }
+    }
+    fun getAllWatchlistMovie(){
+        viewModelScope.launch {
+            val result = getWatchListMoviesUseCase()
+            result.forEach {MainActivity.watchlist.add(Watchlist(it.idWatchlist))}
+            Log.i("watchlist", result.toString())
         }
     }
 

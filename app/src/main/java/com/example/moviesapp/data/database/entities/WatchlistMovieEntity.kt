@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.moviesapp.ui.domain.MovieItem
-import com.example.moviesapp.ui.domain.UpcomingMovieItem
+import com.example.moviesapp.ui.domain.TopRatedMovieItem
 
 @Entity(tableName = "watchlist_table")
 data class WatchlistMovieEntity(
@@ -15,4 +15,4 @@ data class WatchlistMovieEntity(
 )
 
 fun MovieItem.toDatabase() = WatchlistMovieEntity(idWatchlist = id, poster = poster)
-fun UpcomingMovieItem.toDatabase() = WatchlistMovieEntity(idWatchlist = id, poster = poster)
+fun TopRatedMovieItem.toDatabase() = WatchlistMovieEntity(idWatchlist = id, poster = poster)

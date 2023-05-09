@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
 import com.example.moviesapp.data.database.entities.WatchlistMovieEntity
 import com.example.moviesapp.databinding.ItemPopularMovieBinding
+import com.example.moviesapp.ui.MainActivity
 import com.example.moviesapp.ui.domain.MovieItem
 import com.squareup.picasso.Picasso
 
@@ -26,10 +27,27 @@ class WatchlistViewHolder(view: View):RecyclerView.ViewHolder(view) {
             //Cada vez que se pulse la lista le pasamos el id
             onItemSelected(watchlistMovieEntity.idWatchlist)
         }
-        binding.watchlistMovie.setImageResource(R.drawable.ic_added_to_watchlist)
-        binding.watchlistMovie.setOnClickListener {
-            removeWatchlist(watchlistMovieEntity.idWatchlist)
-
+        if(containsMovie(watchlistMovieEntity)){
+            binding.watchlistMovie.setImageResource((R.drawable.ic_added_to_watchlist))
+        }else{
+            binding.watchlistMovie.setImageResource((R.drawable.ic_add_to_watchlist))
         }
+        binding.watchlistMovie.setOnClickListener {
+            if (!containsMovie(watchlistMovieEntity)) {
+                binding.watchlistMovie.setImageResource(R.drawable.ic_added_to_watchlist)
+                addWatchlist(watchlistMovieEntity)
+                Log.i("favorite", watchlistMovieEntity.toString())
+            } else {
+                binding.watchlistMovie.setImageResource(R.drawable.ic_add_to_watchlist)
+                removeWatchlist(watchlistMovieEntity.idWatchlist)
+            }
+        }
+
+    }
+    private fun containsMovie(watchlistMovieEntity: WatchlistMovieEntity): Boolean{
+        MainActivity.watchlist.forEach {
+            if(it.idMovieWatchlist ==watchlistMovieEntity.idWatchlist) return true
+        }
+        return false
     }
 }

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.ItemPopularMovieBinding
+import com.example.moviesapp.ui.MainActivity
 import com.example.moviesapp.ui.domain.MovieItem
 import com.squareup.picasso.Picasso
 
@@ -23,17 +24,29 @@ class PopularMoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             //Cada vez que se pulse la lista le pasamos el id
             onItemSelected(popularMovieItem.id)
         }
+        if(containsMovie(popularMovieItem)){
+            binding.watchlistMovie.setImageResource((R.drawable.ic_added_to_watchlist))
+        }else{
+            binding.watchlistMovie.setImageResource((R.drawable.ic_add_to_watchlist))
+        }
         binding.watchlistMovie.setOnClickListener {
-            if (!popularMovieItem.esFavorito) {
+            if (!containsMovie(popularMovieItem)) {
                 binding.watchlistMovie.setImageResource(R.drawable.ic_added_to_watchlist)
                 addWatchlist(popularMovieItem)
-                Log.i("favorite", popularMovieItem.toString())
-                popularMovieItem.esFavorito = !popularMovieItem.esFavorito
+                Log.i("favoritePopular", popularMovieItem.toString())
+                //searchMovieItem.esFavorito = !searchMovieItem.esFavorito
             } else {
                 binding.watchlistMovie.setImageResource(R.drawable.ic_add_to_watchlist)
                 removeWatchlist(popularMovieItem.id)
-                popularMovieItem.esFavorito = !popularMovieItem.esFavorito
+                //searchMovieItem.esFavorito = !searchMovieItem.esFavorito
+
             }
         }
+    }
+    private fun containsMovie(searchMovieItem: MovieItem): Boolean{
+        MainActivity.watchlist.forEach {
+            if(it.idMovieWatchlist ==searchMovieItem.id) return true
+        }
+        return false
     }
 }

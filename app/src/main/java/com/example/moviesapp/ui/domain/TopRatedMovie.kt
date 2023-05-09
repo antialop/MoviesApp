@@ -1,12 +1,12 @@
 package com.example.moviesapp.ui.domain
 
-import com.example.moviesapp.data.network.model.UpcomingMovieResponse
+import com.example.moviesapp.data.network.model.TopRatedMovieResponse
 import com.google.gson.annotations.SerializedName
 
-data class UpcomingMovie(
-    val date: Dates,
+data class TopReatedMovie(
+    //val date: Dates,
     val page: Int,
-    val upcomingMovies: List<UpcomingMovieItem>,
+    val upcomingMovies: List<TopRatedMovieItem>,
     val total: Int,
     val pages: Int,
 )
@@ -16,10 +16,10 @@ data class Dates(
     @SerializedName("minimum") val minimum: String,
 )
 
-data class UpcomingMovieItem(
+data class TopRatedMovieItem(
     @SerializedName("id") var id: String,
     @SerializedName("poster_path") var poster: String,
     @SerializedName("original_title") val name: String,
     var esFavorito:Boolean = false
 )
-fun UpcomingMovieResponse.toDomain() = UpcomingMovie(date,page,upcomingMovies,total,pages)
+fun TopRatedMovieResponse.toDomain() = TopReatedMovie(page,upcomingMovies,total,pages)

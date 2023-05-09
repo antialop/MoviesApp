@@ -5,7 +5,7 @@ import com.example.moviesapp.data.database.entities.WatchlistMovieEntity
 import com.example.moviesapp.data.network.MoviesService
 import com.example.moviesapp.ui.domain.Movie
 import com.example.moviesapp.ui.domain.MovieDetail
-import com.example.moviesapp.ui.domain.UpcomingMovie
+import com.example.moviesapp.ui.domain.TopReatedMovie
 import com.example.moviesapp.ui.domain.toDomain
 import javax.inject.Inject
 
@@ -22,8 +22,8 @@ class MoviesRespository @Inject constructor(
     suspend fun  getMoviesByNameFromApi(movie:String): Movie{
         return api.getMoviesByName(movie).toDomain()
     }
-    suspend fun getUpcomingMoviesFromApi():UpcomingMovie{
-        return api.getUpcoming().toDomain()
+    suspend fun getTopRatedMoviesFromApi():TopReatedMovie{
+        return api.getRated().toDomain()
     }
     suspend fun getWatchlistFromDatabase(): List<WatchlistMovieEntity>{
         return watchlistMovieDao.getAllWatchlistMovies()

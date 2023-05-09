@@ -1,6 +1,7 @@
 package com.example.moviesapp.ui.watchlist
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.data.database.entities.WatchlistMovieEntity
 import com.example.moviesapp.databinding.FragmentWatchListBinding
+import com.example.moviesapp.ui.MainActivity
 import com.example.moviesapp.ui.domain.MovieItem
 import com.example.moviesapp.ui.watchlist.recyclerview.WatchlistAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,6 +60,7 @@ class WatchListFragment : Fragment() {
     }
     private fun addWatchlistPopularMovieToDataBase(watchlistMovieEntity: WatchlistMovieEntity){
         viewModel.insertWatchlistPopularMovie(watchlistMovieEntity)
+
     }
 
 }
