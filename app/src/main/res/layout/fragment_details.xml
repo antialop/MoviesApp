@@ -44,7 +44,7 @@
                 android:layout_margin="15dp"
                 android:fontFamily="@font/bebas_neue"
                 android:gravity="center_horizontal"
-                android:textColor="@color/white"
+                android:textColor="@color/red"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 tools:text="Antia" />
@@ -53,8 +53,9 @@
 
                 <TextView
                     android:id="@+id/tvRealeaseDate"
-                    android:layout_width="155dp"
+                    android:layout_width="243dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:drawableStart="@drawable/ic_date"
                     android:drawablePadding="10dp"
                     android:fontFamily="@font/bebas_neue"
@@ -65,7 +66,7 @@
 
                 <TextView
                     android:id="@+id/tvRuntime"
-                    android:layout_width="144dp"
+                    android:layout_width="128dp"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_time"
                     android:drawablePadding="10dp"
